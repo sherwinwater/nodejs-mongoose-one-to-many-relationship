@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const dotenv = require('dotenv')
 dotenv.config()
+const db = require("./models");
 
 const app = express()
 
@@ -23,6 +24,13 @@ app.get('/books', async (req, res) => {
   const todos = await getAllBooks()
   console.log(req.url, todos)
 
+  todos.forEach((t)=>{
+    t.comments.forEach(async (c)=>{
+      const comment = await db.Comment.findById(c)
+      console.log("com",comment.text)
+    })
+  })
+
   res.json(todos)
 })
 
@@ -31,16 +39,17 @@ app.get('/books', async (req, res) => {
 app.post('/book/:id/comment', async (req, res) => {
   const bookId = req.params.id;
   const commentData = req.body;
+  console.log("boo",bookId, commentData)
 
   try {
     // Find the book by ID
-    const book = await Tutorial.findById(bookId);
+    const book = await db.Tutorial.findById(bookId);
     if (!book) {
       return res.status(404).send({ message: 'Book not found' });
     }
 
     // Create a new comment and add it to the book's comments array
-    const comment = await Comment.create(commentData);
+    const comment = await db.Comment.create(commentData);
 
     book.comments.push(comment);
 
