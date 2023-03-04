@@ -1,20 +1,20 @@
 {
-  "name": "nodejs-mongoose-one-to-many",
+  "name": "react-todo-api",
   "version": "1.0.0",
-  "description": "Mongoose one to many relationship example",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server.js"
   },
-  "keywords": [
-    "mongoose",
-    "nodejs",
-    "one-to-many",
-    "mongodb"
-  ],
-  "author": "bezkoder",
+  "author": "Tyler Potts",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^5.7.6"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
   }
 }
